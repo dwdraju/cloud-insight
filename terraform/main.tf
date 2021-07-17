@@ -5,7 +5,7 @@ provider "google" {
 
 resource "google_compute_instance" "cloud-insight" {
   name         = "cloud-insight"
-  machine_type = "g1-small"
+  machine_type = "f1-nano"
   zone         = "us-central1-b"
 
   boot_disk {
