@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      run: app
+  template:
+    metadata:
+      labels:
+        run: app
+    spec:
+      containers:
+      - image: gcr.io/gkerocks/app:v1
+        imagePullPolicy: IfNotPresent
+        name: app
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
