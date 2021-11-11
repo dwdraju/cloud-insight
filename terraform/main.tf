@@ -22,3 +22,23 @@ resource "google_compute_instance" "cloud-insight" {
     }
   }
 }
+
+resource "google_compute_instance" "cloud-insight-v2" {
+  name         = "cloud-insight-v2"
+  machine_type = "g1-small"
+  zone         = "us-central1-b"
+
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
+    }
+  }
+
+  network_interface {
+    network = "default"
+
+    access_config {
+      // Ephemeral IP
+    }
+  }
+}
